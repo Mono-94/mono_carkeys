@@ -51,8 +51,8 @@ AddEventHandler('sy_carkeys:obtenerLlaves', function()
     end
     for i = 1, #vehicles do
         local data = vehicles[i]
-        local name = GetDisplayNameFromVehicleModel(data.vehicle.model)
-        local marca = GetMakeNameFromVehicleModel(data.vehicle.model)
+        local name = GetLabelText(GetDisplayNameFromVehicleModel(data.vehicle.model))
+        local marca = GetLabelText(GetMakeNameFromVehicleModel(data.vehicle.model))
         local plate = data.vehicle.plate
         local price = Keys.CopyPrice
         table.insert(KeyMenu, {
