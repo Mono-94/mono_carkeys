@@ -142,20 +142,27 @@ end)
 
 
 lib.addCommand(Keys.CommandDelKey, {
-    help = locale('givekey'),
+    help = locale('delkey'),
     params = {
         {
             name = 'id',
             help = locale('helpgivekey'),
             optional = true,
         },
+        {
+            name = 'count',
+            help = 'Count',
+            optional = true,
+        },
 
     },
     restricted = 'group.admin'
 }, function(source, args)
-    local id = args.ID or source
-    TriggerClientEvent('sy_carkeys:DeleteClientKey', id)
+    local id = args.id or source
+    local count = args.count
+    TriggerClientEvent('sy_carkeys:DeleteClientKey', id, count)
 end)
+
 
 RegisterServerEvent('sy_carkeys:ComprarMatricula', function()
     local xPlayer = ESX.GetPlayerFromId(source)
