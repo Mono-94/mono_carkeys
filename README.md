@@ -48,6 +48,7 @@ local ped = PlayerPedId()
 local vehicle = GetVehiclePedIsUsing(ped)
 local model = GetEntityModel(vehicle)
 local name = GetDisplayNameFromVehicleModel(model)
+local plate = GetVehicleNumberPlateText(vehicle)
 TriggerServerEvent('sy_carkeys:CreateKey', plate, name)  
 ```
 * To delete the key of a player in their current vehicle (useful for when a player returns a work vehicle):
@@ -60,6 +61,7 @@ local ped = PlayerPedId()
 local vehicle = GetVehiclePedIsUsing(ped)
 local model = GetEntityModel(vehicle)
 local name = GetDisplayNameFromVehicleModel(model)
+local plate = GetVehicleNumberPlateText(vehicle)
 TriggerServerEvent('sy_carkeys:DeleteKey', count, plate, name)  
 ```
 * LockPick:

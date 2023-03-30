@@ -149,12 +149,17 @@ lib.addCommand(Keys.CommandDelKey, {
             help = locale('helpgivekey'),
             optional = true,
         },
+        {
+            name = 'count',
+            help = locale('helpgivekeycount'),
+            optional = true,
+        },
 
     },
     restricted = 'group.admin'
 }, function(source, args)
     local id = args.ID or source
-    TriggerClientEvent('sy_carkeys:DeleteClientKey', id)
+    TriggerClientEvent('sy_carkeys:DeleteClientKey', id, args.count)
 end)
 
 RegisterServerEvent('sy_carkeys:ComprarMatricula', function()

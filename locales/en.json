@@ -24,6 +24,7 @@
   "dollar": "$",
   "givekey": "Receive key of the vehicle you are in.",
   "helpgivekey": "Player ID (The player must be in the vehicle)",
+  "helpgivekeycount":"Ammount item",
   "incar": " You must be in a vehicle to be able to turn the engine on or off.",
   "LockPickTitle": "Lock picking",
   "LockPickFail": "You failed, try again. But be careful next time.",

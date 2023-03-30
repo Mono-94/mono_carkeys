@@ -24,6 +24,7 @@
   "dollar": "$",
   "givekey": "Recibir las llaves del vehículo en el que te encuentras.",
   "helpgivekey": "ID del jugador (el jugador debe estar en el vehículo)",
+  "helpgivekeycount":"Cantidad",
   "incar": "Debes estar dentro de un vehículo para encender o apagar el motor.",
   "LockPickTitle": "Forzando cerradura",
   "LockPickFail": "Has fallado, inténtalo de nuevo. Pero ten cuidado la próxima vez.",
