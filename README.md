@@ -115,12 +115,6 @@ exports['sy_carkeys']:SetMatricula()
  ```
 #
 #
-# <center> **Preview**</center>
- * Change Plate -  https://streamable.com/goz7ya
- * keys and menu recovery - https://streamable.com/akf84k
- * LockPick & HotWire - https://streamable.com/nps2uq
-#
-#
 # <center> **Dependencies**</center>
  - ox_lib  -  https://github.com/overextended/ox_lib/releases  
  - ox_inventory  -  https://github.com/overextended/ox_inventory/releases  
