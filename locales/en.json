@@ -39,6 +39,7 @@
   "ErrorActualizar": "Error updating the license plate",
   "NoTienesMatricula": "You don't have any vehicle with the license plate you're trying to change",
   "MatriculaBlanco": "The license plate cannot be blank",
+  "Matriculaexistente": "This plate already exists",
   "MatriculaMax": "The license plate cannot have more than 8 characters (including spaces) or be blank",
   "CambiarMatriDentro": "You must be inside a vehicle to change the license plate",
   "ActualMatri": "Current license plate: %s",
