@@ -155,7 +155,7 @@ vehiculocerrado = SetInterval(function()
         if Keys.Engine then
             if lock == 0 then
                 if GetIsVehicleEngineRunning(veh) == false then
-                    --SetVehicleNeedsToBeHotwired(veh, false)
+                    SetVehicleNeedsToBeHotwired(veh, false)
                     SetVehicleEngineOn(veh, false, true, true)
                 end
             end
@@ -237,15 +237,16 @@ function ToggleEngine()
     end
     if vehicle ~= nil and vehicle ~= 0 and GetPedInVehicleSeat(vehicle, 0) then
         SetVehicleEngineOn(vehicle, (not GetIsVehicleEngineRunning(vehicle)), true, true, true)
-        engineStatus = not GetIsVehicleEngineRunning(vehicle) -- Cambio del estado del motor después de aplicar el cambio
+        engineStatus = not GetIsVehicleEngineRunning(vehicle)
     end
-
-    if not (engineStatus) then
-        TriggerEvent('mono_carkeys:Notification', locale('title'), 'Vehículo encendido.', 'bolt-lightning',
-            '#f6ff00')
-    else
-        TriggerEvent('mono_carkeys:Notification', locale('title'), 'Vehículo apagado.', 'bolt-lightning',
-            '#2f3000')
+    if Keys.EngineNoti then
+        if not (engineStatus) then
+            TriggerEvent('mono_carkeys:Notification', locale('title'), locale('on'), 'bolt-lightning',
+                '#f6ff00')
+        else
+            TriggerEvent('mono_carkeys:Notification', locale('title'), locale('off'), 'bolt-lightning',
+                '#2f3000')
+        end
     end
 end
 
@@ -269,29 +270,27 @@ if Keys.FindKeys.FindKey then
             if not searchedVehicles[plate] then
                 if lib.progressBar({
                         duration = Keys.FindKeys.ProgressTime,
-                        label = 'Buscando...',
+                        label = locale('buscando'),
                         useWhileDead = false,
-                        canCancel = true,
+                        canCancel = false,
                         disable = {
-                            car = true,
+                            car = false,
                         },
                     }) then
                     if math.random() > Keys.FindKeys.Probability then
-                        TriggerEvent('mono_carkeys:Notification', locale('title'), 'No encontraste nada para ' .. plate)
+                        TriggerEvent('mono_carkeys:Notification', locale('title'), locale('nokeysfound'))
                         searchedVehicles[plate] = true
                     else
-                        TriggerEvent('mono_carkeys:Notification', locale('title'), 'Llave encontrada para ' .. plate)
+                        TriggerEvent('mono_carkeys:Notification', locale('title'), locale('encontrada'))
                         TriggerServerEvent('mono_carkeys:CreateKey', plate)
                         searchedVehicles[plate] = true
                     end
-                else
-                    TriggerEvent('mono_carkeys:Notification', locale('title'), 'Do stuff when cancelled')
                 end
             else
-                TriggerEvent('mono_carkeys:Notification', locale('title'), 'Ya has buscado en este vehículo previamente')
+                TriggerEvent('mono_carkeys:Notification', locale('title'), locale('buscado'))
             end
         else
-            TriggerEvent('mono_carkeys:Notification', locale('title'), 'Tienes que estar en un vehiculo.')
+            TriggerEvent('mono_carkeys:Notification', locale('title'), locale('dentrocar'))
         end
     end
 

@@ -45,5 +45,12 @@
     "CambiarColorMatri": "License plate color",
     "MatriculaNueva": "New license plate",
     "Matricula": "License plate",
-    "ComprarMatriDescri": "Acquire a new custom license plate for your vehicle. \n Price: %s $"
+    "ComprarMatriDescri": "Acquire a new custom license plate for your vehicle. \n Price: %s $",
+    "on": "Vehicle on.",
+    "off": "Vehicle off.",
+    "nokeysfound": "You did not find the key in the vehicle.",
+    "buscando": "Searching...",
+    "encontrada": "You found the vehicle key!",
+    "buscado": "You have already searched this vehicle before.",
+    "tuyoo": "This vehicle belongs to you."
 }
