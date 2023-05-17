@@ -26,88 +26,20 @@
 # 
 #
 
+#  <center>**Documents**</center>
+- https://mono-2.gitbook.io/docs/mono-scrips/mono_carkeys
 
-# <center> **Events y exports**</center>
 
-* To obtain a key for a nearby vehicle with a ProgressBar:
-
-```LUA
-exports['mono_carkeys']:CarKey(time) -- Waiting time of the ProgressBar
--- exports['mono_carkeys']:CarKey(1000)           1000 = 1s
-```
-
-* Create Key event:
-```LUA
-local ped = PlayerPedId()
-local vehicle = GetVehiclePedIsUsing(ped)
-local plate = GetVehicleNumberPlateText(vehicle)
-TriggerServerEvent('mono_carkeys:CreateKey', plate, name)  
-```
-
-* To delete the key of a player in their current vehicle (useful for when a player returns a work vehicle):
-```LUA
-TriggerEvent('mono_carkeys:DeleteClientKey', count)
-```
-* To delete specific keys:
-```LUA
-local ped = PlayerPedId()
-local vehicle = GetVehiclePedIsUsing(ped)
-local plate = GetVehicleNumberPlateText(vehicle)
-TriggerServerEvent('mono_carkeys:DeleteKey', count, plate)  
-```
-* LockPick:
-```LUA
-exports['mono_carkeys']:LockPick()
-```
-* HotWire:
-```LUA
-exports['mono_carkeys']:HotWire()
-```
-* Change Plate:
-```LUA
-exports['mono_carkeys']:SetMatricula()
-```
+# 
 #
-#
-#  <center>**Ox inventory Item's**</center>
-```LUA
-['carkeys'] = {
-	label = 'Car Key',
-	weight = 5,
-	stack = true
-},
 
-['ganzua'] = {
-	label = 'Lockpick',
-	weight = 25,
-	stack = true,
-	client = {
-		export = 'mono_carkeys:LockPick'
-	}
-},
-
-['alicates'] = {
-	label = 'Wire Cutters',
-	weight = 50,
-	stack = true,
-	client = {
-		export = 'mono_carkeys:HotWire'
-	}
-},
-['plate'] = {
-	label = 'Plate',
-	weight = 500,
-	stack = true,
-	client = {
-		export = 'mono_carkeys:SetMatricula'
-	}
-},
-
- ```
 # <center> **Dependencies**</center>
  - ox_lib  -  https://github.com/overextended/ox_lib/releases  
  - ox_inventory  -  https://github.com/overextended/ox_inventory/releases  
  - ox_target  -  https://github.com/overextended/ox_target/releases  
 
 
+# 
+#
 
+[![M O N O](https://2430960706-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F2oByTNZwTdGG73wPzn79%2Fuploads%2F908C8ElSOvZSdpqNfNty%2Fimage.png?alt=media&token=67350bcc-0b3c-4a90-bb7b-665ba4e32d0c)](https://discord.gg/Vk7eY8xYV2)
