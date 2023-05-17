@@ -1,8 +1,6 @@
 
-  #
-  <sub> <center> Discord https://discord.gg/Vk7eY8xYV2 </center></sub>
-  
-# <center>**SY_CARKEYS**</center>
+
+# <center>**mono_carkeys**</center>
 <center><img src="https://i.imgur.com/45ygmFr.png"></center>
 
 #
@@ -32,49 +30,42 @@
 # <center> **Events y exports**</center>
 
 * To obtain a key for a nearby vehicle with a ProgressBar:
-```LUA
-exports['sy_carkeys']:CarKey(time) -- Waiting time of the ProgressBar
--- exports['sy_carkeys']:CarKey(1000)           1000 = 1s
-```
-* To generate a key with a wait time for the player to enter the vehicle and obtain its license plate:
-```LUA
-exports['sy_carkeys']:CarKeyBuy(time) --The time can be adjusted as needed and allows waiting for the player who is inside the vehicle.
 
--- exports['sy_carkeys']:CarKeyBuy(1000)           1000 = 1s
+```LUA
+exports['mono_carkeys']:CarKey(time) -- Waiting time of the ProgressBar
+-- exports['mono_carkeys']:CarKey(1000)           1000 = 1s
 ```
+
 * Create Key event:
 ```LUA
 local ped = PlayerPedId()
 local vehicle = GetVehiclePedIsUsing(ped)
-local model = GetEntityModel(vehicle)
-local name = GetDisplayNameFromVehicleModel(model)
 local plate = GetVehicleNumberPlateText(vehicle)
-TriggerServerEvent('sy_carkeys:CreateKey', plate, name)  
+TriggerServerEvent('mono_carkeys:CreateKey', plate, name)  
 ```
+
 * To delete the key of a player in their current vehicle (useful for when a player returns a work vehicle):
 ```LUA
-TriggerEvent('sy_carkeys:DeleteClientKey', count)
+TriggerEvent('mono_carkeys:DeleteClientKey', count)
 ```
 * To delete specific keys:
 ```LUA
 local ped = PlayerPedId()
 local vehicle = GetVehiclePedIsUsing(ped)
-local model = GetEntityModel(vehicle)
-local name = GetDisplayNameFromVehicleModel(model)
 local plate = GetVehicleNumberPlateText(vehicle)
-TriggerServerEvent('sy_carkeys:DeleteKey', count, plate, name)  
+TriggerServerEvent('mono_carkeys:DeleteKey', count, plate)  
 ```
 * LockPick:
 ```LUA
-exports['sy_carkeys']:LockPick()
+exports['mono_carkeys']:LockPick()
 ```
 * HotWire:
 ```LUA
-exports['sy_carkeys']:HotWire()
+exports['mono_carkeys']:HotWire()
 ```
 * Change Plate:
 ```LUA
-exports['sy_carkeys']:SetMatricula()
+exports['mono_carkeys']:SetMatricula()
 ```
 #
 #
@@ -91,7 +82,7 @@ exports['sy_carkeys']:SetMatricula()
 	weight = 25,
 	stack = true,
 	client = {
-		export = 'sy_carkeys.LockPick'
+		export = 'mono_carkeys:LockPick'
 	}
 },
 
@@ -100,7 +91,7 @@ exports['sy_carkeys']:SetMatricula()
 	weight = 50,
 	stack = true,
 	client = {
-		export = 'sy_carkeys.HotWire'
+		export = 'mono_carkeys:HotWire'
 	}
 },
 ['plate'] = {
@@ -108,13 +99,11 @@ exports['sy_carkeys']:SetMatricula()
 	weight = 500,
 	stack = true,
 	client = {
-		export = 'sy_carkeys.SetMatricula'
+		export = 'mono_carkeys:SetMatricula'
 	}
 },
 
  ```
-#
-#
 # <center> **Dependencies**</center>
  - ox_lib  -  https://github.com/overextended/ox_lib/releases  
  - ox_inventory  -  https://github.com/overextended/ox_inventory/releases  

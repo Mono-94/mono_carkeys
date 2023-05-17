@@ -2,21 +2,24 @@ fx_version 'cerulean'
 
 game 'gta5' 
 
-name 'sy_carkeys'
+name 'mono_carkeys'
+
+repository 	'https://github.com/Mono-94/mono_carkeys'
+
+version 		'2.0.0'
 
 author 'Symbiote#3027'
 
-repository 'https://github.com/Mono-94/sy_carkeys'
 
 shared_scripts{
     '@es_extended/imports.lua',
     '@ox_lib/init.lua',
-    'config.lua'
+    'config_keys.lua'
 } 
 
 
 client_scripts{
-    'client/*.lua'
+    'client/*.lua',
 } 
 
 server_scripts{
