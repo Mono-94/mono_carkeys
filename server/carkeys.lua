@@ -172,27 +172,6 @@ lib.addCommand(Keys.CommandGiveKey, {
 end)
 
 
-lib.addCommand(Keys.CommandDelKey, {
-    help = locale('givekey'),
-    params = {
-        {
-            name = 'id',
-            help = locale('helpgivekey'),
-            optional = true,
-        },
-        {
-            name = 'count',
-            help = locale('helpgivekeycount'),
-            optional = true,
-        },
-
-    },
-    restricted = 'group.admin'
-}, function(source, args)
-    local id = args.ID or source
-    TriggerClientEvent('mono_carkeys:DeleteClientKey', id, args.count)
-end)
-
 RegisterServerEvent('mono_carkeys:ComprarMatricula', function()
     local xPlayer = ESX.GetPlayerFromId(source)
     if ox_inventory:CanCarryItem(source, Keys.ItemPlate, 1) then

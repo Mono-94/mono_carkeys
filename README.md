@@ -21,7 +21,6 @@
 #  <center>**Commands Admins**</center>
 * **/givekey [ID]** - *With this command, you can obtain a key for the vehicle you are currently in, or you can use the ID of a player who is in a vehicle to give them a key to that vehicle.*
 
-* **/delkey [ID]** - *With this command, you can delete the key for the vehicle you are currently in.*
 
 # 
 #
