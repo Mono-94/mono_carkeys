@@ -8,55 +8,35 @@ local ox_inventory = exports.ox_inventory
 
 RegisterServerEvent('mono_carkeys:DeleteKey', function(count, plate)
     local source = source
-    local platedelentejas = string.len(plate)
-    if platedelentejas < 8 then
-        while platedelentejas < 8 do
-            plate = plate .. " "
-            platedelentejas = platedelentejas + 1
-        end
-    end
+    print(plate)
     exports.ox_inventory:RemoveItem(source, 'carkeys', count,
         { plate = plate, description = locale('key_description', plate) })
-
 end)
-
-
 
 
 
 RegisterServerEvent('mono_carkeys:CreateKey', function(plate)
     local source = source
-    local platedelentejas = string.len(plate)
-    if platedelentejas < 8 then
-        while platedelentejas < 8 do
-            plate = plate .. " "
-            platedelentejas = platedelentejas + 1
-        end
-    end
     if ox_inventory:CanCarryItem(source, Keys.ItemName, 1) then
-        ox_inventory:AddItem(source, Keys.ItemName, 1, { plate = plate, description = locale('key_description', plate) })
+        ox_inventory:AddItem(source, Keys.ItemName, 1,
+            { plate = plate, description = locale('key_description', plate) })
     end
 end)
 
 
-RegisterServerEvent('mono_carkeys:BuyKeys', function(plate,precio)
+RegisterServerEvent('mono_carkeys:BuyKeys', function(plate, precio)
     local source = source
     local xPlayer = ESX.GetPlayerFromId(source)
-    local platedelentejas = string.len(plate)
-    if platedelentejas < 8 then
-        while platedelentejas < 8 do
-            plate = plate .. " "
-            platedelentejas = platedelentejas + 1
-        end
-    end
     if ox_inventory:CanCarryItem(source, Keys.ItemName, 1) then
         if xPlayer.getMoney() >= precio then
             exports.ox_inventory:RemoveItem(source, 'money', precio)
             ox_inventory:AddItem(source, Keys.ItemName, 1,
                 { plate = plate, description = locale('key_description', plate) })
-            TriggerClientEvent('mono_carkeys:Notification', source, locale('title'),locale('llavecomprada', precio),'key','#fffff' )
+            TriggerClientEvent('mono_carkeys:Notification', source, locale('title'), locale('llavecomprada', precio),
+                'key', '#fffff')
         else
-            TriggerClientEvent('mono_carkeys:Notification', source, locale('title'), locale('NoDinero'),'ban','#fffff')
+            TriggerClientEvent('mono_carkeys:Notification', source, locale('title'), locale('NoDinero'), 'ban',
+                '#fffff')
         end
     end
 end)
@@ -92,6 +72,7 @@ end)
 
 RegisterServerEvent('mono_carkeys:SetMatriculaServer')
 AddEventHandler('mono_carkeys:SetMatriculaServer', function(oldPlate, newPlate, newColor)
+    local source = source
     local xPlayer = ESX.GetPlayerFromId(source)
     local identifier = xPlayer.getIdentifier()
 
@@ -103,9 +84,7 @@ AddEventHandler('mono_carkeys:SetMatriculaServer', function(oldPlate, newPlate, 
 
     if result[1] ~= nil then
         local decodedVehicle = json.decode(result[1].vehicle)
-        decodedVehicle.plate = newPlate .. string.rep(' ', 8 - #newPlate)
         local newVehicle = json.encode(decodedVehicle)
-        exports.ox_inventory:RemoveItem(xPlayer.source, Keys.ItemPlate, 1)
         MySQL.Async.execute(
             'UPDATE `owned_vehicles` SET `plate` = @newPlate, `vehicle` = @newVehicle WHERE `owner` = @identifier AND `plate` = @oldPlate',
             {
@@ -115,15 +94,15 @@ AddEventHandler('mono_carkeys:SetMatriculaServer', function(oldPlate, newPlate, 
                 ['@newVehicle'] = newVehicle
             }, function(rowsChanged)
                 if rowsChanged > 0 then
-                    TriggerClientEvent('mono_carkeys:SetMatricula', xPlayer.source, decodedVehicle.plate, newColor)
-                    TriggerClientEvent('mono_carkeys:Notification', xPlayer.source,
+                    TriggerClientEvent('mono_carkeys:SetMatricula', source, decodedVehicle.plate, newColor)
+                    TriggerClientEvent('mono_carkeys:Notification', source,
                         locale('MatriculaActualizada', oldPlate, decodedVehicle.plate))
                 else
-                    TriggerClientEvent('mono_carkeys:Notification', xPlayer.source, locale('ErrorActualizar'))
+                    TriggerClientEvent('mono_carkeys:Notification', source, locale('ErrorActualizar'))
                 end
             end)
     else
-        TriggerClientEvent('mono_carkeys:Notification', xPlayer.source, locale('NoTienesMatricula'))
+        TriggerClientEvent('mono_carkeys:Notification', source, locale('NoTienesMatricula'))
     end
 end)
 
@@ -186,7 +165,7 @@ lib.addCommand(Keys.CommandGiveKey, {
 }, function(source, args)
     local id = args.ID or source
     if args.ID ~= nil then
-            TriggerClientEvent('mono_carkeys:AddKeysCars', id)
+        TriggerClientEvent('mono_carkeys:AddKeysCars', id)
     else
         TriggerClientEvent('mono_carkeys:Notification', source, locale('title'), 'debes poner una ID', 'error')
     end
@@ -230,25 +209,20 @@ RegisterServerEvent('mono_carkeys:ComprarMatricula', function()
 end)
 
 
--- SYNC
-
 RegisterNetEvent('mono_carkeys:ServerDoors', function(id)
     local source = source
 
     local vehicle = NetworkGetEntityFromNetworkId(id)
 
     local status = GetVehicleDoorLockStatus(vehicle)
-
-    if Keys.Debug then
-        print('Carkey = ' .. 'Vehicle Newwork: ' .. vehicle .. ' Door:' .. status)
-    end
     if status == 2 then
         SetVehicleDoorsLocked(vehicle, 0)
         TriggerClientEvent('mono_carkeys:Notification', source, locale('title'), locale('unlock_veh'), 'lock-open',
             '#32a852')
-    elseif status == 0 then
+    elseif status == 0 or 1 then
         SetVehicleDoorsLocked(vehicle, 2)
-        TriggerClientEvent('mono_carkeys:Notification', source, locale('title'), locale('lock_veh'), 'lock', '#a83254')
+        TriggerClientEvent('mono_carkeys:Notification', source, locale('title'), locale('lock_veh'), 'lock',
+            '#a83254')
     end
     TriggerClientEvent('mono_carkeys:LucesLocas', source, id, status ~= 2)
 end)

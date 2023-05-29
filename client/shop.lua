@@ -1,3 +1,4 @@
+
 function CreateBlip(Position, Sprite, Display, Scale, Colour, ShortRange, Name)
     local blip = AddBlipForCoord(Position.x, Position.y, Position.z)
     SetBlipSprite(blip, Sprite)
@@ -28,9 +29,9 @@ end
 CreateThread(function()
     for k, v in pairs(Keys.NpcReclameKey) do
         if v.Blip then
-            CreateBlip(v.pos, v.Sprite, v.Display, v.Scale, v.Colour, v.ShortRange)
+            CreateBlip(v.pos, v.Sprite, v.Display, v.Scale, v.Colour, v.ShortRange, locale('cerrajero'))
         end
-        SetPedPos(v.hash , v.pos, v.PedScenario)
+        SetPedPos(v.hash, v.pos, v.PedScenario)
         exports.ox_target:addBoxZone({
             coords = vec3(v.pos.x, v.pos.y, v.pos.z + 1),
             size = vec3(1, 1, 2),
@@ -41,7 +42,7 @@ CreateThread(function()
                     icon = v.icon,
                     label = v.label,
                     onSelect = function()
-                        MenuKeys(v.price,v.tiempoprogress )
+                        MenuKeys(v.price, v.tiempoprogress)
                     end
                 }
             }
@@ -50,7 +51,7 @@ CreateThread(function()
 end)
 
 
-function MenuKeys(precio,tiempoprogress)
+function MenuKeys(precio, tiempoprogress)
     local KeyMenu = {}
     local vehicles = lib.callback.await('mono_carkeys:getVehicles')
     if vehicles == nil then
@@ -69,7 +70,7 @@ function MenuKeys(precio,tiempoprogress)
             icon = 'car-side',
             arrow = true,
             description = locale('matricula', plate),
-            metadata = { { label = 'Price', value = price..'$' } },
+            metadata = { { label = 'Price', value = price .. '$' } },
             onSelect = function()
                 local alert = lib.alertDialog({
                     header = locale('buy_key_confirm1'),
@@ -95,16 +96,16 @@ function MenuKeys(precio,tiempoprogress)
                             anim = {
                                 dict = 'missheistdockssetup1clipboard@base',
                                 clip = 'base'
-                              },
-                              prop = {
+                            },
+                            prop = {
                                 model = `prop_notepad_01`,
                                 bone = 18905,
                                 pos = vec3(0.1, 0.02, 0.05),
                                 rot = vec3(10.0, 0.0, 0.0)
-                              },
+                            },
                         })
                     then
-                        TriggerServerEvent('mono_carkeys:BuyKeys', plate,price)
+                        TriggerServerEvent('mono_carkeys:BuyKeys', plate, price)
                     end
                 end
             end
@@ -118,3 +119,4 @@ function MenuKeys(precio,tiempoprogress)
 
     lib.showContext('mono_carkeys:SelectCarKey')
 end
+
