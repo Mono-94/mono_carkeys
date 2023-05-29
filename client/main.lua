@@ -1,5 +1,7 @@
 function GetPlayerKey()
-    local closet = lib.getClosestVehicle(cache.coords, Keys.Distance, true)
+    local ped = PlayerPedId()
+    local coords = GetEntityCoords(ped)
+    local closet = lib.getClosestVehicle(coords, Keys.Distance, true)
     local vehicleProps = ESX.Game.GetVehicleProperties(closet)
     local keys = exports.ox_inventory:Search('slots', Keys.ItemName)
     for i, v in ipairs(keys) do
@@ -9,10 +11,10 @@ function GetPlayerKey()
     end
     return nil
 end
-
 function AbrirCerrar()
-    local ped = cache.ped
-    local closet = lib.getClosestVehicle(cache.coords, Keys.Distance, true)
+    local ped = PlayerPedId()
+    local coords = GetEntityCoords(ped)
+    local closet = lib.getClosestVehicle(coords, Keys.Distance, true)
     local prop = GetHashKey('p_car_keys_01')
     local inCar = IsPedInAnyVehicle(ped, true)
     if closet then
@@ -51,7 +53,6 @@ function AbrirCerrar()
         TriggerEvent('mono_carkeys:Notification', locale('title'), locale('no_veh_nearby'), 'car', '#3232a8')
     end
 end
-
 function GetVehicleEngineState(vehicle)
     local state = GetVehicleEngineHealth(vehicle) > 0 and GetIsVehicleEngineRunning(vehicle)
     return state
