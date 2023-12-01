@@ -32,7 +32,7 @@
 - Get Player Key
 ```lua
     local havekey, entity, inCar, ped = GetPlayerKey()
-    --  havekey, entity, inCar, ped 
+    --  return havekey, entity, inCar, ped 
 ```
 ## Server
 
