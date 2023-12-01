@@ -8,7 +8,7 @@
 
 # 🔩 Exports / Events
 ## Client / Server
-- Give or Remove Keys
+- Set Vehicle Doors Status 
 ```lua
     Entity(VehicleEntity).state.MonoCarKeys = doorstatus
 ```
