@@ -31,7 +31,7 @@
 ```
 - Get Player Key
 ```lua
-    local havekey, entity, inCar, ped = GetPlayerKey()
+    local havekey, entity, inCar, ped = exports.mono_carkeys:GetPlayerKey()
     --  return havekey, entity, inCar, ped 
 ```
 ## Server
