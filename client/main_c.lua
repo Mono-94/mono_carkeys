@@ -49,6 +49,7 @@ end)
 
 function VehicleDoors()
     local havekey, entity, inCar, ped = GetPlayerKey()
+    if not havekey then return end
     local nameCar = GetDisplayNameFromVehicleModel(GetEntityModel(entity))
     local markCar = GetMakeNameFromVehicleModel(GetEntityModel(entity))
     local fullname = ((nameCar .. ' - ' .. markCar):lower()):gsub("(%a)([%w_']*)", function(first, rest) return first:upper() .. rest:lower() end)
