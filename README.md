@@ -43,7 +43,7 @@
     exports.mono_carkeys:InventoryKeys(action, { plate = plate, player = source})
 ```
 
-# 📦 ItemS
+# 📦 Item
 
 - carkeys 
 ```lua
